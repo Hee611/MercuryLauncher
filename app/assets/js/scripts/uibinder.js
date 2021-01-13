@@ -109,9 +109,9 @@ function showFatalStartupError(){
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
-                'Fatal Error: Unable to Load Distribution Index',
-                'A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application.',
-                'Close'
+                '치명적 오류: 배포 인덱스를 불러올 수 없음',
+                '수성 온라인과 통신할 수 없어, 배포 인덱스를 불러올 수 없습니다. 사용 가능한 로컬 배포 인덱스가 없습니다.<br><br>배포 인덱스는 수성 런처 실행에 반드시 필요한 파일 입니다. 해당 파일이 없어 런처를 실행할 수 없습니다. 인터넷 연결 확인 후, 런처를 다시 실행해 주세요.',
+                '닫기'
             )
             setOverlayHandler(() => {
                 const window = remote.getCurrentWindow()
@@ -323,10 +323,10 @@ async function validateSelectedAccount(){
             ConfigManager.save()
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
-                'Failed to Refresh Login',
-                `We were unable to refresh the login for <strong>${selectedAcc.displayName}</strong>. Please ${accLen > 0 ? 'select another account or ' : ''} login again.`,
-                'Login',
-                'Select Another Account'
+                '로그인 정보를 새로고침 하는데 실패하였습니다.',
+                `아래 계정의 로그인 정보를 새로고침 할 수 없습니다.<br><strong>${selectedAcc.displayName}</strong><br>${accLen > 0 ? '다른 계정을 선택하거나, ' : ''}다시 로그인 해주세요.`,
+                '로그인',
+                '다른 계정 선택'
             )
             setOverlayHandler(() => {
                 document.getElementById('loginUsername').value = selectedAcc.username

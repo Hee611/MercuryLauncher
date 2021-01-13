@@ -26,9 +26,16 @@ window.eval = global.eval = function () {
 
 // Display warning when devtools window is opened.
 remote.getCurrentWebContents().on('devtools-opened', () => {
-    console.log('%cThe console is dark and full of terrors.', 'color: white; -webkit-text-stroke: 4px #a02d2a; font-size: 60px; font-weight: bold')
-    console.log('%cIf you\'ve been told to paste something here, you\'re being scammed.', 'font-size: 16px')
-    console.log('%cUnless you know exactly what you\'re doing, close this window.', 'font-size: 16px')
+    console.log('%cMercury Launcher DevTools Console', 'font-size: 50px; font-weight: bold')
+    console.log('%cLauncher Version : 2.1.0', 'font-size: 30px')
+    console.log('%cMercury Launcher DevTools 콘솔에 오신것을 환영합니다!', 'font-size: 15px')
+    console.log('%c이 콘솔은 오류 보고, 확인 목적으로 활용되는 콘솔입니다.', 'font-size: 15px')
+    console.log('%c실수 혹은 키 조합(Ctrl + Shift + i)을 잘못 눌러서 이 화면을 보고 계신 경우, 우측 상단 X 버튼을 눌러서 이 콘솔을 닫을 수 있습니다.', 'font-size: 15px')
+    console.log('%c오류 보고, 확인 목적으로 이 콘솔을 의도적으로 여셨을 경우, 아래의 순서를 따라 로그 파일을 올려주세요!', 'font-size: 15px')
+    console.log('%c1. (여기)를 우클릭 하고, 보여지는 메뉴 중, "Save as..."를 눌러 주세요.', 'font-size: 15px')
+    console.log('%c2. 바탕화면, 다운로드 폴더와 같이 찾기 쉬운 폴더에 파일명을 "(닉네임)_(YYYY.MM.DD. (날짜)).log"의 형식으로 저장해 주세요.', 'font-size: 15px')
+    console.log('%c3. 다운로드 한 파일을 공식 디스코드 (https://discord.gg/ECVySZj) 의 런처 카테고리 > 런처-오류보고 채널에 올려주세요.', 'font-size: 15px')
+    console.log('%c보내주신 로그 파일은 Mercury Launcher와 서버의 개선에 큰 도움이 됩니다. 감사합니다.', 'font-size: 15px')
 })
 
 // Disable zoom, needed for darwin.
@@ -42,13 +49,13 @@ if(!isDev){
         switch(arg){
             case 'checking-for-update':
                 loggerAutoUpdater.log('Checking for update..')
-                settingsUpdateButtonStatus('Checking for Updates..', true)
+                settingsUpdateButtonStatus('업데이트 확인 중..', true)
                 break
             case 'update-available':
                 loggerAutoUpdaterSuccess.log('New update available', info.version)
                 
                 if(process.platform === 'darwin'){
-                    info.darwindownload = `https://github.com/dscalzi/HeliosLauncher/releases/download/v${info.version}/helioslauncher-setup-${info.version}.dmg`
+                    info.darwindownload = `https://github.com/Hee611/MercuryLauncher/releases/download/v${info.version}/mercurylauncher-setup-${info.version}.dmg`
                     showUpdateUI(info)
                 }
                 
@@ -64,8 +71,8 @@ if(!isDev){
                 showUpdateUI(info)
                 break
             case 'update-not-available':
-                loggerAutoUpdater.log('No new update found.')
-                settingsUpdateButtonStatus('Check for Updates')
+                loggerAutoUpdater.log('새로운 업데이트가 발견되지 않았습니다.')
+                settingsUpdateButtonStatus('업데이트 확인')
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {
